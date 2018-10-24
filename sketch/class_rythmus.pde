@@ -10,8 +10,11 @@ public class Rythmus {
       float theta = map(index, 0, RYTHMUS_length, 0, TWO_PI);
       float x = sin(theta) * RYTHMUS_radius;
       float y = cos(theta) * RYTHMUS_radius;
-      int h = index % (RYTHMUS_length / 2) != 0 ? PILLAR_height : SENSOR_height;
-      this.pillars.add(new Pillar(index, new PVector(x, y), h, -theta));
+      if (index % (RYTHMUS_length / 2) == 0) {
+        this.pillars.add(new Pillar(index, new PVector(x, y), SENSOR_height, SENSOR_leds_length, -theta));
+      } else {
+        this.pillars.add(new Pillar(index, new PVector(x, y), PILLAR_height, PILLAR_leds_length, -theta));
+      }
     }
 
     this.nodes = bundlePillars(this.pillars, 4);

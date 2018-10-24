@@ -3,6 +3,7 @@ public class Pillar {
   public int height;
   public int ledHeight;
   public float angle;
+  public int leds_length;
   public PVector position;
 
   public int[][] leds;
@@ -10,21 +11,22 @@ public class Pillar {
   private PShape SHAPE_pillar;
   private PShape SHAPE_leds;
 
-  Pillar (int i, PVector position, int height, float angle) {
+  Pillar (int i, PVector position, int height, int leds_length, float angle) {
     this.index = i;
     this.position = position;
     this.height = height;
     this.angle = angle;
+    this.leds_length = leds_length;
 
-    this.createShapes();
-    this.leds = new color[PILLAR_leds_length * 2][3];
+    this.createShapes(leds_length);
+    this.leds = new color[leds_length * 2][3];
     for (int[] l : this.leds) {
       l = new int[3];
       for (int a : l) a = 0;
     }
   }
 
-  private void createShapes () {
+  private void createShapes (int leds_length) {
     this.SHAPE_pillar = createShape(GROUP);
 
     PShape leds = cylinder(5, PILLAR_radius, this.height - PILLAR_height_offset, true);
@@ -40,13 +42,13 @@ public class Pillar {
     this.SHAPE_pillar.setStroke(false);
 
     this.SHAPE_leds = createShape(GROUP);
-    float ledHeight = (this.height - PILLAR_height_offset) / (float) PILLAR_leds_length;
+    float ledHeight = (this.height - PILLAR_height_offset) / (float) leds_length;
     for (int ledMode = 0; ledMode < 2; ledMode++) {
       int angleOffset = ledMode * 180;
-      for (int index = 0; index < PILLAR_leds_length; index++) {
+      for (int index = 0; index < leds_length; index++) {
         float y = ledMode == 0
-          ? map(index, 0, PILLAR_leds_length, PILLAR_height_offset, this.height)
-          : map(index, 0, PILLAR_leds_length, this.height, PILLAR_height_offset);
+          ? map(index, 0, leds_length, PILLAR_height_offset, this.height)
+          : map(index + 1, 0, leds_length, this.height, PILLAR_height_offset);
         PShape led = half_cylinder(10, PILLAR_radius + 1, ledHeight, false, PILLAR_face_aperture, angleOffset + PILLAR_face_aperture_offset);
         led.translate(0, 0, y + (ledHeight * 0.5) - (this.height * 0.5));
         this.SHAPE_leds.addChild(led);
