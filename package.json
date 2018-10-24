@@ -1,6 +1,6 @@
 {
   "name": "rythmus-viewer",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "preview `rythmus` in 3D by hijacking `hnode`'s UDP",
   "author": "Arnaud Juracek",
   "license": "MIT",
