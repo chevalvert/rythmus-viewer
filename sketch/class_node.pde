@@ -29,19 +29,11 @@ public class Node {
   public void update (byte[] incomingPacket) {
     for (int i = 0; i < this.pillars.size(); i++) {
       Pillar p = this.pillars.get(i);
-      if (p == null) return;
-      // if (p == null) continue;
+      if (p == null) continue;
 
-      int len = p.leds.length;
-      for (int z = 0; z < len; z++) {
+      for (int z = 0; z < p.leds.length; z++) {
         for (int k = 0; k < 3; k++) {
-          p.leds[z][k] = int(incomingPacket[(i * len + z) * 3 + k]);
-
-          // if ((i * len + z) * 3 + k > incomingPacket.length) {
-          //   println("oob: "+ ((i * len + z) * 3 + k) + " > " + incomingPacket.length);
-          // }
-
-          // println(incomingPacket.length + " | " + int(incomingPacket[(i * len + z) * 3 + k]));
+          p.leds[z][k] = int(incomingPacket[(i * EXPECTED_leds_length + z) * 3 + k]);
         }
       }
     }
