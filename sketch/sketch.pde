@@ -2,7 +2,7 @@ import peasy.PeasyCam;
 import java.util.Iterator;
 
 final int UDP_PORT = 3737;
-
+final boolean PRINT_MAPPING = false;
 final boolean OPTIONS_fullscreen = true;
 
 final int RYTHMUS_radius = 589 / 2;
@@ -10,8 +10,8 @@ final int RYTHMUS_length = 34 + 2;
 
 final int PILLAR_height = 180;
 final int SENSOR_height = 90;
-final int PILLAR_leds_length = 89;
-final int SENSOR_leds_length = 35;
+final int PILLAR_leds_length = 178 / 2;
+final int SENSOR_leds_length = 68 / 2;
 // NOTE: see rythmus-app::Stripled.js
 final int EXPECTED_leds_length = PILLAR_leds_length * 2;
 
@@ -47,7 +47,7 @@ void setup () {
     is_started = true;
     cam = new PeasyCam(this, RYTHMUS_radius * 2.5);
     rythmus.connect(UDP_PORT);
-    rythmus.printNodesMapping();
+    if (PRINT_MAPPING) rythmus.printNodesMapping();
   } else frameCount = 0;
 
 
@@ -58,7 +58,7 @@ void setup () {
 void draw () {
   background(OPTIONS_darkmode ? COLOR_gray : COLOR_rhino);
   rotateX(radians(90 - 22.5));
-  rotateZ(radians(90 + 22.5 + map(RECORD_framecount, 0, 2000, 0, 360)));
+  rotateZ(radians(map(RECORD_framecount, 0, 2000, 0, 360)));
 
   // if (RECORD_framecount > 2000) OPTIONS_record = false;
 

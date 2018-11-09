@@ -1,7 +1,7 @@
 boolean OPTIONS_record = false;
-boolean OPTIONS_darkmode = false;
-boolean OPTIONS_floor = true;
-boolean OPTIONS_environment = true;
+boolean OPTIONS_darkmode = true;
+boolean OPTIONS_floor = false;
+boolean OPTIONS_environment = false;
 boolean OPTIONS_informations = false;
 
 String RECORD_timestamp;
