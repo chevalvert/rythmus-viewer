@@ -11,7 +11,8 @@ public class Node {
     this.pillars = new ArrayList<Pillar>();
 
     int PORT_RX = 6000 + id;
-    this.info = name + "//" + PORT_RX;
+    int VERSION = 0;
+    this.info = name + "//" + PORT_RX + "//" +  VERSION;
 
     this.udp_rx = new UDP(parent, PORT_RX);
     this.udp_rx.listen(true);
@@ -27,13 +28,21 @@ public class Node {
   }
 
   public void update (byte[] incomingPacket) {
-    for (int i = 0; i < this.pillars.size(); i++) {
-      Pillar p = this.pillars.get(i);
+    // NOTE: first by of payload is either 0 or 2
+    // 0 => first couple of strips (#0 and #1)
+    // 1 => second couple of strips (#2 and #3)
+    int offset = int(incomingPacket[0]);
+    if (offset != 0 && offset != 2) return;
+
+    // TODO: variable size
+    for (int i = 0; i < 2; i++) {
+      Pillar p = this.pillars.get(i + offset);
       if (p == null) continue;
 
       for (int z = 0; z < p.leds.length; z++) {
         for (int k = 0; k < 3; k++) {
-          p.leds[z][k] = int(incomingPacket[(i * EXPECTED_leds_length + z) * 3 + k]);
+          int index = (1 + i) + (i * EXPECTED_leds_length + z) * 3 + k;
+          p.leds[z][k] = int(incomingPacket[index]);
         }
       }
     }
