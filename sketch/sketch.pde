@@ -53,6 +53,8 @@ void setup () {
 
   GUI_environment_human = loadShape("human.obj");
   GUI_environment_human.setFill(color(35));
+
+  println("rythmus-viewer is running");
 }
 
 void draw () {
