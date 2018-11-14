@@ -1,3 +1,5 @@
+import java.util.Collections;
+
 public class Rythmus {
   private PApplet parent;
   public ArrayList<Node> nodes;
@@ -23,6 +25,8 @@ public class Rythmus {
   private ArrayList<Node> bundlePillars (ArrayList<Pillar> pillars, int bundleLength) {
     ArrayList<Node> nodes = new ArrayList<Node>();
     Node curNode = new Node(this.parent, 0);
+
+    if (OPTIONS_randomize_mapping) Collections.shuffle(pillars);
 
     for (Pillar pillar : pillars) {
       if (curNode.pillars.size() + 1 > bundleLength) {

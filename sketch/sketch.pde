@@ -4,6 +4,7 @@ import java.util.Iterator;
 final int UDP_PORT = 3737;
 final boolean PRINT_MAPPING = false;
 final boolean OPTIONS_fullscreen = true;
+final boolean OPTIONS_randomize_mapping = false;
 
 final int RYTHMUS_radius = 589 / 2;
 final int RYTHMUS_length = 34 + 2;
