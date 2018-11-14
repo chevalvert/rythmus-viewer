@@ -1,5 +1,5 @@
 # rythmus-viewer [<img src="https://github.com/chevalvert.png?size=100" align="right">](http://chevalvert.fr/)
-*Preview [Rythmus](https://github.com/chevalvert/ryhtmus) in 3D by hijacking [`hnode`](https://github.com/Hemisphere-Project/STRATUM)'s UDP.*
+**[Rythmus](https://github.com/chevalvert?q=rythmus)** [`hnode`](https://github.com/Hemisphere-Project/STRATUM) 3D previewer
 
 ![preview.png](preview.png)
 
