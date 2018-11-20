@@ -13,9 +13,9 @@ public class Rythmus {
       float x = sin(theta) * RYTHMUS_radius;
       float y = cos(theta) * RYTHMUS_radius;
       if (index % (RYTHMUS_length / 2) == 0) {
-        this.pillars.add(new Pillar(index, new PVector(x, y), SENSOR_height, SENSOR_leds_length, -theta));
+        this.pillars.add(new Pillar(index, new PVector(x, y), SENSOR_height, SENSOR_leds_length, -theta + PI));
       } else {
-        this.pillars.add(new Pillar(index, new PVector(x, y), PILLAR_height, PILLAR_leds_length, -theta));
+        this.pillars.add(new Pillar(index, new PVector(x, y), PILLAR_height, PILLAR_leds_length, -theta + PI));
       }
     }
 
